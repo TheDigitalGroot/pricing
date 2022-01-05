@@ -2,6 +2,7 @@ package com.octo.commerce.cart.model;
 
 import com.octo.commerce.pricing.model.SKUItem;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,10 @@ import java.util.List;
  * Holder of cart items.
  */
 public class ShoppingCart {
+    /**
+     * Order Total.
+     */
+    private BigDecimal orderTotal;
     /**
      * Holder of sku items.
      */

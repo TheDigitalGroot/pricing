@@ -1,5 +1,7 @@
 package com.octo.commerce.pricing.model;
 
+import java.util.Map;
+
 /**
  * The criteria to identify discounts.
  */
@@ -7,36 +9,15 @@ public class DiscountCriteria {
     /**
      * sku id.
      */
-    private final String skuId;
-    /**
-     * quantity.
-     */
-    private final Integer quantity;
+    private final Map<String, Integer> discountCriteriaMap;
 
     /**
      * Constructor.
-     * @param skuId - set a skuid
-     * @param quantity - set a qty
+     *
+     * @param discountCriteriaMap - maps
      */
-    public DiscountCriteria(final String skuId, final Integer quantity) {
-        this.skuId = skuId;
-        this.quantity = quantity;
-    }
-
-    /**
-     * get a skuid.
-     * @return skuid
-     */
-    public String getSkuId() {
-        return skuId;
-    }
-
-    /**
-     * get the qty.
-     * @return qty
-     */
-    public Integer getQuantity() {
-        return quantity;
+    public DiscountCriteria(final Map<String, Integer> discountCriteriaMap) {
+        this.discountCriteriaMap = discountCriteriaMap;
     }
 
 

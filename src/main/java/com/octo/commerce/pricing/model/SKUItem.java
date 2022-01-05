@@ -13,7 +13,7 @@ public class SKUItem {
     /**
      * The sku price.
      */
-    private final BigDecimal skuUnitPrice;
+    private final BigDecimal itemPrice;
     /**
      * The sku quantity.
      */
@@ -21,18 +21,23 @@ public class SKUItem {
     /**
      * The discounted sku price.
      */
-    private BigDecimal discountedUnitSkuPrice;
+    private BigDecimal salesPrice;
+
+    /**
+     * The item subTotal.
+     */
+    private BigDecimal itemSubTotal;
 
     /**
      * SKU Item constructor.
      *
      * @param skuID    - accept skuID
-     * @param skuUnitPrice - accepts skuPrice
+     * @param itemPrice - accepts skuPrice
      * @param quantity - accepts qty
      */
-    public SKUItem(final String skuID, final BigDecimal skuUnitPrice, final int quantity) {
+    public SKUItem(final String skuID, final BigDecimal itemPrice, final int quantity) {
         this.skuID = skuID;
-        this.skuUnitPrice = skuUnitPrice;
+        this.itemPrice = itemPrice;
         this.quantity = quantity;
     }
 
@@ -50,8 +55,8 @@ public class SKUItem {
      *
      * @return skuprice
      */
-    public BigDecimal getSkuUnitPrice() {
-        return skuUnitPrice;
+    public BigDecimal getItemPrice() {
+        return itemPrice;
     }
 
     /**
@@ -67,15 +72,31 @@ public class SKUItem {
      * get discounted unit price.
      * @return discounted unit price
      */
-    public BigDecimal getDiscountedUnitSkuPrice() {
-        return discountedUnitSkuPrice;
+    public BigDecimal getSalesPrice() {
+        return salesPrice;
     }
 
     /**
      * set discount unit price.
-     * @param discountedUnitSkuPrice - set discount unit price
+     * @param salesPrice - set discount unit price
      */
-    public void setDiscountedUnitSkuPrice(final BigDecimal discountedUnitSkuPrice) {
-        this.discountedUnitSkuPrice = discountedUnitSkuPrice;
+    public void setSalesPrice(final BigDecimal salesPrice) {
+        this.salesPrice = salesPrice;
+    }
+
+    /**
+     * get item subtotal.
+     * @return itemsubtotal
+     */
+    public BigDecimal getItemSubTotal() {
+        return itemSubTotal;
+    }
+
+    /**
+     * set item subtotal.
+     * @param itemSubTotal - set itemsubtotal
+     */
+    public void setItemSubTotal(final BigDecimal itemSubTotal) {
+        this.itemSubTotal = itemSubTotal;
     }
 }

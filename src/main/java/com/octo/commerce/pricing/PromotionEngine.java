@@ -2,7 +2,6 @@ package com.octo.commerce.pricing;
 
 import com.octo.commerce.cart.model.ShoppingCart;
 import com.octo.commerce.pricing.model.PriceDiscount;
-import com.octo.commerce.pricing.model.SKUItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -25,11 +24,22 @@ public class PromotionEngine {
      * @return - total order value
      */
     public Optional<BigDecimal> calculateOrderTotal(final ShoppingCart cart) {
-        return cart.getItems().stream().map(SKUItem::getSkuUnitPrice).reduce(BigDecimal::add);
+        applyDiscounts(cart);
+        return cart.getItems().stream().map(a -> a.getSalesPrice().multiply(BigDecimal.valueOf(a.getQuantity()))).reduce(BigDecimal::add);
+    }
+
+    /**
+     * Method to calculate the discounts.
+     *
+     * @param cart - accepts a cart
+     */
+    private void applyDiscounts(final ShoppingCart cart) {
+        cart.getItems().forEach(e -> e.setSalesPrice(e.getItemPrice()));
     }
 
     /**
      * add a discount to local storage.
+     *
      * @param discount - add a discount
      */
     public void addDiscount(final PriceDiscount discount) {
