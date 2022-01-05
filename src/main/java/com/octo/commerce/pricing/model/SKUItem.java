@@ -9,15 +9,19 @@ public class SKUItem {
     /**
      * The sku identifier.
      */
-    private String skuID;
+    private final String skuID;
     /**
      * The sku price.
      */
-    private BigDecimal skuPrice;
+    private final BigDecimal skuPrice;
     /**
      * The sku quantity.
      */
-    private int quantity;
+    private final int quantity;
+    /**
+     * The discounted sku price.
+     */
+    private BigDecimal discountedSkuPrice;
 
     /**
      * SKU Item constructor.
@@ -34,6 +38,7 @@ public class SKUItem {
 
     /**
      * skuid getter.
+     *
      * @return skuid
      */
     public String getSkuID() {
@@ -42,6 +47,7 @@ public class SKUItem {
 
     /**
      * skuprice getter.
+     *
      * @return skuprice
      */
     public BigDecimal getSkuPrice() {
@@ -50,9 +56,18 @@ public class SKUItem {
 
     /**
      * qty getter.
+     *
      * @return qty
      */
     public int getQuantity() {
         return quantity;
+    }
+
+    public BigDecimal getDiscountedSkuPrice() {
+        return discountedSkuPrice;
+    }
+
+    public void setDiscountedSkuPrice(BigDecimal discountedSkuPrice) {
+        this.discountedSkuPrice = discountedSkuPrice;
     }
 }

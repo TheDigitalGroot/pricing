@@ -12,7 +12,7 @@ public class ShoppingCart {
     /**
      * Holder of sku items.
      */
-    private final List<SKUItem> skuItemList = new ArrayList<>();
+    private List<SKUItem> skuItemList = new ArrayList<>();
 
     /**
      * Add a new sku item to the cart.
@@ -25,9 +25,18 @@ public class ShoppingCart {
 
     /**
      * Get sku items list.
+     *
      * @return list of skus
      */
     public List<SKUItem> getItems() {
         return skuItemList;
+    }
+
+    /**
+     * Set a sku items list.
+     * @param skuItemList - accept to set
+     */
+    public void setItems(List<SKUItem> skuItemList) {
+        this.skuItemList = skuItemList;
     }
 }
