@@ -5,11 +5,19 @@ package com.octo.commerce.pricing.model;
  */
 public enum RewardType {
     /**
-     * Fixed Discount.
+     * Fixed Discount on single.
      */
-    FiXED,
+    FiXED_SINGLE,
     /**
-     * Percentage Discount.
+     * Fixed Discount on combinations.
      */
-    PERCENT
+    FiXED_COMBO,
+    /**
+     * Percentage Discount on single item.
+     */
+    PERCENT_SINGLE,
+    /**
+     * Percentage Discount on a combination of items.
+     */
+    PERCENT_COMBO
 }

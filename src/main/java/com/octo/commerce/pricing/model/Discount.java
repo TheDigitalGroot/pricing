@@ -1,16 +1,17 @@
 package com.octo.commerce.pricing.model;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * Discount Super type.
  */
-public interface PriceDiscount {
+public interface Discount {
     /**
-     * Gets the discount criterias.
-     * @return discount criteria
+     * get sku to qty relation.
+     * @return relation
      */
-    DiscountCriteria getDiscountCriteria();
+    Map<String, Integer> getSkuQtyRelation();
 
     /**
      * Get the reward type.

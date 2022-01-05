@@ -50,20 +50,19 @@ public class PromotionEngineTest {
         cart.add(skuItemC);
 
         PromotionEngine promotionEngine = new PromotionEngine();
-        DiscountCriteria discountCriteriaA = new DiscountCriteria(Collections.singletonMap("A", 3));
-        BuyXforAmt buyXFixedPriceDiscountA = new BuyXforAmt(discountCriteriaA, RewardType.FiXED, new BigDecimal(130), "SINGLEA");
+        Map<String, Integer> discountCriteriaA = Collections.singletonMap("A", 3);
+        BuyXforAmt buyXFixedPriceDiscountA = new BuyXforAmt(discountCriteriaA, RewardType.FiXED_SINGLE, new BigDecimal(130), "FiXED_SINGLE_A");
         promotionEngine.addDiscount(buyXFixedPriceDiscountA);
 
 
-        DiscountCriteria discountCriteriaB = new DiscountCriteria(Collections.singletonMap("B", 2));
-        BuyXforAmt buyXFixedPriceDiscountB = new BuyXforAmt(discountCriteriaB, RewardType.FiXED, new BigDecimal(45), "SINGLEB");
+        Map<String, Integer> discountCriteriaB = Collections.singletonMap("B", 2);
+        BuyXforAmt buyXFixedPriceDiscountB = new BuyXforAmt(discountCriteriaB, RewardType.FiXED_SINGLE, new BigDecimal(45), "FiXED_SINGLE_B");
         promotionEngine.addDiscount(buyXFixedPriceDiscountB);
 
-        Map<String, Integer> discMap = new HashMap<>();
-        discMap.put("C", 1);
-        discMap.put("D", 1);
-        DiscountCriteria discountCriteriaCD = new DiscountCriteria(discMap);
-        BuyXandYforAmt buyXandYforAmt = new BuyXandYforAmt(discountCriteriaCD, RewardType.FiXED, new BigDecimal(30), "COMBINED");
+        Map<String, Integer> discountCriteriaCD = new HashMap<>();
+        discountCriteriaCD.put("C", 1);
+        discountCriteriaCD.put("D", 1);
+        BuyXandYforAmt buyXandYforAmt = new BuyXandYforAmt(discountCriteriaCD, RewardType.FiXED_COMBO, new BigDecimal(30), "FIXED_COMBINED");
         promotionEngine.addDiscount(buyXandYforAmt);
 
         Optional<BigDecimal> orderTotal = promotionEngine.calculateOrderTotal(cart);
@@ -86,20 +85,19 @@ public class PromotionEngineTest {
         cart.add(skuItemC);
 
         PromotionEngine promotionEngine = new PromotionEngine();
-        DiscountCriteria discountCriteriaA = new DiscountCriteria(Collections.singletonMap("A", 3));
-        BuyXforAmt buyXFixedPriceDiscountA = new BuyXforAmt(discountCriteriaA, RewardType.FiXED, new BigDecimal(130), "SINGLEA");
+        Map<String, Integer> discountCriteriaA = Collections.singletonMap("A", 3);
+        BuyXforAmt buyXFixedPriceDiscountA = new BuyXforAmt(discountCriteriaA, RewardType.FiXED_SINGLE, new BigDecimal(130), "FiXED_SINGLE_A");
         promotionEngine.addDiscount(buyXFixedPriceDiscountA);
 
 
-        DiscountCriteria discountCriteriaB = new DiscountCriteria(Collections.singletonMap("B", 2));
-        BuyXforAmt buyXFixedPriceDiscountB = new BuyXforAmt(discountCriteriaB, RewardType.FiXED, new BigDecimal(45), "SINGLEB");
+        Map<String, Integer> discountCriteriaB = Collections.singletonMap("B", 2);
+        BuyXforAmt buyXFixedPriceDiscountB = new BuyXforAmt(discountCriteriaB, RewardType.FiXED_SINGLE, new BigDecimal(45), "FiXED_SINGLE_B");
         promotionEngine.addDiscount(buyXFixedPriceDiscountB);
 
-        Map<String, Integer> discMap = new HashMap<>();
-        discMap.put("C", 1);
-        discMap.put("D", 1);
-        DiscountCriteria discountCriteriaCD = new DiscountCriteria(discMap);
-        BuyXandYforAmt buyXandYforAmt = new BuyXandYforAmt(discountCriteriaCD, RewardType.FiXED, new BigDecimal(30), "COMBINED");
+        Map<String, Integer> discountCriteriaCD = new HashMap<>();
+        discountCriteriaCD.put("C", 1);
+        discountCriteriaCD.put("D", 1);
+        BuyXandYforAmt buyXandYforAmt = new BuyXandYforAmt(discountCriteriaCD, RewardType.FiXED_COMBO, new BigDecimal(30), "FIXED_COMBINED");
         promotionEngine.addDiscount(buyXandYforAmt);
 
         Optional<BigDecimal> orderTotal = promotionEngine.calculateOrderTotal(cart);

@@ -1,10 +1,13 @@
 package com.octo.commerce.pricing.model;
 
+import lombok.ToString;
+
 import java.math.BigDecimal;
 
 /**
  * Represent a cart item.
  */
+@ToString
 public class SKUItem {
     /**
      * The sku identifier.
@@ -17,11 +20,7 @@ public class SKUItem {
     /**
      * The sku quantity.
      */
-    private final int quantity;
-    /**
-     * The discounted sku price.
-     */
-    private BigDecimal salesPrice;
+    private final Integer quantity;
 
     /**
      * The item subTotal.
@@ -40,6 +39,11 @@ public class SKUItem {
         this.itemPrice = itemPrice;
         this.quantity = quantity;
     }
+
+    /**
+     * The discountedFlag.
+     */
+    private boolean discounted;
 
     /**
      * skuid getter.
@@ -64,24 +68,8 @@ public class SKUItem {
      *
      * @return qty
      */
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
-    }
-
-    /**
-     * get discounted unit price.
-     * @return discounted unit price
-     */
-    public BigDecimal getSalesPrice() {
-        return salesPrice;
-    }
-
-    /**
-     * set discount unit price.
-     * @param salesPrice - set discount unit price
-     */
-    public void setSalesPrice(final BigDecimal salesPrice) {
-        this.salesPrice = salesPrice;
     }
 
     /**
@@ -99,4 +87,22 @@ public class SKUItem {
     public void setItemSubTotal(final BigDecimal itemSubTotal) {
         this.itemSubTotal = itemSubTotal;
     }
+
+    /**
+     * discounted boolean flag.
+     * @return discounted state
+     */
+    public boolean isDiscounted() {
+        return discounted;
+    }
+
+    /**
+     * set discounted flag.
+     * @param discounted - accepts a boolean
+     */
+    public void setDiscounted(final boolean discounted) {
+        this.discounted = discounted;
+    }
+
+
 }

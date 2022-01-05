@@ -1,15 +1,16 @@
 package com.octo.commerce.pricing.model;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 /**
  * A discount type for combination items discounts.
  */
-public class BuyXandYforAmt implements PriceDiscount {
+public class BuyXandYforAmt implements Discount {
     /**
      * Discount criteria.
      */
-    private final DiscountCriteria discountCriteria;
+    private final Map<String, Integer> skuQtyRelation;
     /**
      * Reward Type.
      */
@@ -25,13 +26,13 @@ public class BuyXandYforAmt implements PriceDiscount {
 
     /**
      * Constructor.
-     * @param discountCriteria - set a discount criteria
+     * @param skuQtyRelation - set a discount criteria
      * @param rewardType -  set reward type
      * @param rewardAmount - set reward amount
      * @param rewardDesc - set reward desc
      */
-    public BuyXandYforAmt(final DiscountCriteria discountCriteria, final RewardType rewardType, final BigDecimal rewardAmount, final String rewardDesc) {
-        this.discountCriteria = discountCriteria;
+    public BuyXandYforAmt(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal rewardAmount, final String rewardDesc) {
+        this.skuQtyRelation = skuQtyRelation;
         this.rewardType = rewardType;
         this.rewardAmount = rewardAmount;
         this.rewardDesc = rewardDesc;
@@ -42,8 +43,8 @@ public class BuyXandYforAmt implements PriceDiscount {
      * @return list
      */
     @Override
-    public DiscountCriteria getDiscountCriteria() {
-        return discountCriteria;
+    public Map<String, Integer> getSkuQtyRelation() {
+        return skuQtyRelation;
     }
 
     /**
