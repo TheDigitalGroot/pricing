@@ -22,4 +22,12 @@ public class ShoppingCart {
     public void add(final SKUItem skuItem) {
         skuItemList.add(skuItem);
     }
+
+    /**
+     * Get sku items list.
+     * @return list of skus
+     */
+    public List<SKUItem> getItems() {
+        return skuItemList;
+    }
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 /**
  * Unit tests for Promotion Engine
@@ -26,8 +27,8 @@ public class PromotionEngineTest {
         cart.add(skuItemD);
 
         PromotionEngine promotionEngine = new PromotionEngine();
-        BigDecimal orderTotal = promotionEngine.calculateOrderTotal(cart);
-        Assertions.assertEquals(new BigDecimal(115), orderTotal);
+        Optional<BigDecimal> orderTotal = promotionEngine.calculateOrderTotal(cart);
+        Assertions.assertEquals(new BigDecimal(115), orderTotal.get());
 
     }
 }

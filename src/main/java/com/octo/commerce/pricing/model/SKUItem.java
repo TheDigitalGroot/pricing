@@ -31,4 +31,28 @@ public class SKUItem {
         this.skuPrice = skuPrice;
         this.quantity = quantity;
     }
+
+    /**
+     * skuid getter.
+     * @return skuid
+     */
+    public String getSkuID() {
+        return skuID;
+    }
+
+    /**
+     * skuprice getter.
+     * @return skuprice
+     */
+    public BigDecimal getSkuPrice() {
+        return skuPrice;
+    }
+
+    /**
+     * qty getter.
+     * @return qty
+     */
+    public int getQuantity() {
+        return quantity;
+    }
 }
