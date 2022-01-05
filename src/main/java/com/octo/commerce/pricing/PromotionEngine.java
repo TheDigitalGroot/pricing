@@ -13,7 +13,10 @@ import java.util.Optional;
  * Represents the Promotion Engine.
  */
 public class PromotionEngine {
-    private List<PriceDiscount> priceDiscountList = new ArrayList<>();
+    /**
+     * list of stored discounts.
+     */
+    private final List<PriceDiscount> priceDiscountList = new ArrayList<>();
 
     /**
      * main method to calculate order total.
@@ -22,11 +25,14 @@ public class PromotionEngine {
      * @return - total order value
      */
     public Optional<BigDecimal> calculateOrderTotal(final ShoppingCart cart) {
-
-        return cart.getItems().stream().map(SKUItem::getSkuPrice).reduce(BigDecimal::add);
+        return cart.getItems().stream().map(SKUItem::getSkuUnitPrice).reduce(BigDecimal::add);
     }
 
-    public void addDiscount(PriceDiscount discount) {
+    /**
+     * add a discount to local storage.
+     * @param discount - add a discount
+     */
+    public void addDiscount(final PriceDiscount discount) {
         priceDiscountList.add(discount);
     }
 }

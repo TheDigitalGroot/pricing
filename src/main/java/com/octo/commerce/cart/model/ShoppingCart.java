@@ -33,10 +33,10 @@ public class ShoppingCart {
     }
 
     /**
-     * Set a sku items list.
-     * @param skuItemList - accept to set
+     * set sku items.
+     * @param skuItemList - set a list of skus
      */
-    public void setItems(List<SKUItem> skuItemList) {
+    public void setSkuItemList(final List<SKUItem> skuItemList) {
         this.skuItemList = skuItemList;
     }
 }

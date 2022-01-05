@@ -13,7 +13,7 @@ public class SKUItem {
     /**
      * The sku price.
      */
-    private final BigDecimal skuPrice;
+    private final BigDecimal skuUnitPrice;
     /**
      * The sku quantity.
      */
@@ -21,18 +21,18 @@ public class SKUItem {
     /**
      * The discounted sku price.
      */
-    private BigDecimal discountedSkuPrice;
+    private BigDecimal discountedUnitSkuPrice;
 
     /**
      * SKU Item constructor.
      *
      * @param skuID    - accept skuID
-     * @param skuPrice - accepts skuPrice
+     * @param skuUnitPrice - accepts skuPrice
      * @param quantity - accepts qty
      */
-    public SKUItem(final String skuID, final BigDecimal skuPrice, final int quantity) {
+    public SKUItem(final String skuID, final BigDecimal skuUnitPrice, final int quantity) {
         this.skuID = skuID;
-        this.skuPrice = skuPrice;
+        this.skuUnitPrice = skuUnitPrice;
         this.quantity = quantity;
     }
 
@@ -50,8 +50,8 @@ public class SKUItem {
      *
      * @return skuprice
      */
-    public BigDecimal getSkuPrice() {
-        return skuPrice;
+    public BigDecimal getSkuUnitPrice() {
+        return skuUnitPrice;
     }
 
     /**
@@ -63,11 +63,19 @@ public class SKUItem {
         return quantity;
     }
 
-    public BigDecimal getDiscountedSkuPrice() {
-        return discountedSkuPrice;
+    /**
+     * get discounted unit price.
+     * @return discounted unit price
+     */
+    public BigDecimal getDiscountedUnitSkuPrice() {
+        return discountedUnitSkuPrice;
     }
 
-    public void setDiscountedSkuPrice(BigDecimal discountedSkuPrice) {
-        this.discountedSkuPrice = discountedSkuPrice;
+    /**
+     * set discount unit price.
+     * @param discountedUnitSkuPrice - set discount unit price
+     */
+    public void setDiscountedUnitSkuPrice(final BigDecimal discountedUnitSkuPrice) {
+        this.discountedUnitSkuPrice = discountedUnitSkuPrice;
     }
 }
