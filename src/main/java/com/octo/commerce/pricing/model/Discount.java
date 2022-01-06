@@ -29,9 +29,9 @@ public interface Discount {
     String getRewardDescription();
 
     /**
-     * Get reward amt.
+     * Get reward in fixed amount or percentage per SKU based on qty.
      *
      * @return amt
      */
-    BigDecimal getRewardAmount();
+    BigDecimal getReward();
 }

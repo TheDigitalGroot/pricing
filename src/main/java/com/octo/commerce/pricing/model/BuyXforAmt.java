@@ -18,7 +18,7 @@ public class BuyXforAmt implements Discount {
     /**
      * Reward Amount.
      */
-    private final BigDecimal rewardAmount;
+    private final BigDecimal reward;
     /**
      * Reward Desc.
      */
@@ -29,13 +29,13 @@ public class BuyXforAmt implements Discount {
      *
      * @param skuQtyRelation - set a discount criteria
      * @param rewardType     - set reward type
-     * @param rewardAmount   - set a reward amount
+     * @param reward   - set a reward amount
      * @param rewardDesc     - set reward desc
      */
-    public BuyXforAmt(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal rewardAmount, final String rewardDesc) {
+    public BuyXforAmt(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal reward, final String rewardDesc) {
         this.skuQtyRelation = skuQtyRelation;
         this.rewardType = rewardType;
-        this.rewardAmount = rewardAmount;
+        this.reward = reward;
         this.rewardDesc = rewardDesc;
     }
 
@@ -75,7 +75,7 @@ public class BuyXforAmt implements Discount {
      * @return reward amt
      */
     @Override
-    public BigDecimal getRewardAmount() {
-        return rewardAmount;
+    public BigDecimal getReward() {
+        return reward;
     }
 }

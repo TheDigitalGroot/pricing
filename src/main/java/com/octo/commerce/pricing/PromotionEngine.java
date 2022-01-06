@@ -7,12 +7,12 @@ import com.octo.commerce.pricing.model.SKUItem;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,9 +31,9 @@ public class PromotionEngine {
      * @param cart - accepts a cart object
      * @return - total order value
      */
-    public Optional<BigDecimal> calculateOrderTotal(final ShoppingCart cart) {
+    public BigDecimal calculateOrderTotal(final ShoppingCart cart) {
         applyDiscounts(cart);
-        return cart.getItems().stream().map(SKUItem::getItemSubTotal).reduce(BigDecimal::add);
+        return cart.getItems().stream().map(SKUItem::getItemSubTotal).reduce(BigDecimal::add).get().setScale(2, RoundingMode.HALF_UP);
     }
 
     /**
@@ -77,13 +77,13 @@ public class PromotionEngine {
 
                         comboDiscountedItems.forEach(comboItem -> {
                             Integer qtyToBeDiscounted = discount.getSkuQtyRelation().get(comboItem.getSkuID());
-                            Integer totalQtyInCombo = comboSkuList.size();
+                            int totalQtyInCombo = comboSkuList.size();
                             if (!Objects.isNull(qtyToBeDiscounted)) {
                                 int discountedTimes = comboItemWithMinQty.getQuantity() / qtyToBeDiscounted;
                                 int nonDiscountedQty =
                                         comboItem.getQuantity() - comboItemWithMinQty.getQuantity();
                                 comboItem.setDiscounted(Boolean.TRUE);
-                                comboItem.setItemSubTotal(discount.getRewardAmount().divide(BigDecimal.valueOf(totalQtyInCombo))
+                                comboItem.setItemSubTotal(discount.getReward().divide(BigDecimal.valueOf(totalQtyInCombo))
                                         .multiply(BigDecimal.valueOf(discountedTimes))
                                         .add(comboItem.getItemPrice().multiply(BigDecimal.valueOf(nonDiscountedQty))));
                                 log.info(String.valueOf(comboItem));
@@ -121,9 +121,24 @@ public class PromotionEngine {
                             int discountedTimes = skuItem.getQuantity() / qtyToBeDiscounted;
                             int nonDiscountedQty = skuItem.getQuantity() % qtyToBeDiscounted;
                             skuItem.setDiscounted(Boolean.TRUE);
-                            skuItem.setItemSubTotal(discount.getRewardAmount().multiply(BigDecimal.valueOf(discountedTimes))
+                            skuItem.setItemSubTotal(discount.getReward().multiply(BigDecimal.valueOf(discountedTimes))
                                     .add(skuItem.getItemPrice().multiply(BigDecimal.valueOf(nonDiscountedQty))));
                             log.info(String.valueOf(skuItem));
+                        }
+                    }
+            );
+        });
+
+        cart.getItems().stream().filter(skuItem -> !skuItem.isDiscounted()).forEach(skuItem -> {
+            discountList.stream().filter(discount -> discount.getRewardType().equals(RewardType.PERCENT_SINGLE)).forEach(discount -> {
+                        Integer qtyToBeDiscounted = discount.getSkuQtyRelation().get(skuItem.getSkuID());
+                        if (!Objects.isNull(qtyToBeDiscounted)) {
+                            int nonDiscountedQty = skuItem.getQuantity() - qtyToBeDiscounted;
+                            skuItem.setDiscounted(Boolean.TRUE);
+                            skuItem.setItemSubTotal(discount.getReward().multiply(skuItem.getItemPrice())
+                                    .multiply(BigDecimal.valueOf(qtyToBeDiscounted))
+                                    .add(skuItem.getItemPrice().multiply(BigDecimal.valueOf(nonDiscountedQty))));
+                            log.info("{} {} ", discount.getReward(), String.valueOf(skuItem));
                         }
                     }
             );

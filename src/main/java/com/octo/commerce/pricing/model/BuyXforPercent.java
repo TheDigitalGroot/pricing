@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 /**
- * A discount type for combination items discounts.
+ * A discount type for single items discounts.
  */
-public class BuyXandYforAmt implements Discount {
+public class BuyXforPercent implements Discount {
     /**
      * Discount criteria.
      */
@@ -16,7 +16,7 @@ public class BuyXandYforAmt implements Discount {
      */
     private final RewardType rewardType;
     /**
-     * Reward Amount.
+     * Reward Percentage.
      */
     private final BigDecimal reward;
     /**
@@ -28,11 +28,11 @@ public class BuyXandYforAmt implements Discount {
      * Constructor.
      *
      * @param skuQtyRelation - set a discount criteria
-     * @param rewardType     -  set reward type
-     * @param reward   - set reward amount
+     * @param rewardType     - set reward type
+     * @param reward         - set a reward amount
      * @param rewardDesc     - set reward desc
      */
-    public BuyXandYforAmt(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal reward, final String rewardDesc) {
+    public BuyXforPercent(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal reward, final String rewardDesc) {
         this.skuQtyRelation = skuQtyRelation;
         this.rewardType = rewardType;
         this.reward = reward;
@@ -76,6 +76,6 @@ public class BuyXandYforAmt implements Discount {
      */
     @Override
     public BigDecimal getReward() {
-        return reward;
+        return reward.divide(BigDecimal.valueOf(100));
     }
 }
