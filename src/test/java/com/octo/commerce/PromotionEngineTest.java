@@ -2,12 +2,18 @@ package com.octo.commerce;
 
 import com.octo.commerce.cart.model.ShoppingCart;
 import com.octo.commerce.pricing.PromotionEngine;
-import com.octo.commerce.pricing.model.*;
+import com.octo.commerce.pricing.model.BuyXandYforAmt;
+import com.octo.commerce.pricing.model.BuyXforAmt;
+import com.octo.commerce.pricing.model.RewardType;
+import com.octo.commerce.pricing.model.SKUItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Unit tests for Promotion Engine
@@ -138,5 +144,42 @@ public class PromotionEngineTest {
 
         Optional<BigDecimal> orderTotal = promotionEngine.calculateOrderTotal(cart);
         Assertions.assertEquals(new BigDecimal(280), orderTotal.get());
+    }
+
+
+    /**
+     * Scenario D: Adding four skus to the cart and getting the total when discounts match
+     */
+    @Test
+    void calculateTotalOrderValueWithMatchingDiscountsforAndUnEqualComboItems() {
+        SKUItem skuItemA = new SKUItem("A", new BigDecimal(50), 3);
+        SKUItem skuItemB = new SKUItem("B", new BigDecimal(30), 5);
+        SKUItem skuItemC = new SKUItem("C", new BigDecimal(20), 2);
+        SKUItem skuItemD = new SKUItem("D", new BigDecimal(15), 1);
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.add(skuItemA);
+        cart.add(skuItemB);
+        cart.add(skuItemC);
+        cart.add(skuItemD);
+
+        PromotionEngine promotionEngine = new PromotionEngine();
+        Map<String, Integer> discountCriteriaA = Collections.singletonMap("A", 3);
+        BuyXforAmt buyXFixedPriceDiscountA = new BuyXforAmt(discountCriteriaA, RewardType.FiXED_SINGLE, new BigDecimal(130), "FiXED_SINGLE_A");
+        promotionEngine.addDiscount(buyXFixedPriceDiscountA);
+
+
+        Map<String, Integer> discountCriteriaB = Collections.singletonMap("B", 2);
+        BuyXforAmt buyXFixedPriceDiscountB = new BuyXforAmt(discountCriteriaB, RewardType.FiXED_SINGLE, new BigDecimal(45), "FiXED_SINGLE_B");
+        promotionEngine.addDiscount(buyXFixedPriceDiscountB);
+
+        Map<String, Integer> discountCriteriaCD = new HashMap<>();
+        discountCriteriaCD.put("C", 1);
+        discountCriteriaCD.put("D", 1);
+        BuyXandYforAmt buyXandYforAmt = new BuyXandYforAmt(discountCriteriaCD, RewardType.FiXED_COMBO, new BigDecimal(30), "FIXED_COMBINED");
+        promotionEngine.addDiscount(buyXandYforAmt);
+
+        Optional<BigDecimal> orderTotal = promotionEngine.calculateOrderTotal(cart);
+        Assertions.assertEquals(new BigDecimal(300), orderTotal.get());
     }
 }

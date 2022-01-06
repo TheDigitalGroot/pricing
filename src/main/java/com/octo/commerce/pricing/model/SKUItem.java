@@ -26,24 +26,23 @@ public class SKUItem {
      * The item subTotal.
      */
     private BigDecimal itemSubTotal;
+    /**
+     * The discountedFlag.
+     */
+    private boolean discounted;
 
     /**
      * SKU Item constructor.
      *
-     * @param skuID    - accept skuID
+     * @param skuID     - accept skuID
      * @param itemPrice - accepts skuPrice
-     * @param quantity - accepts qty
+     * @param quantity  - accepts qty
      */
     public SKUItem(final String skuID, final BigDecimal itemPrice, final int quantity) {
         this.skuID = skuID;
         this.itemPrice = itemPrice;
         this.quantity = quantity;
     }
-
-    /**
-     * The discountedFlag.
-     */
-    private boolean discounted;
 
     /**
      * skuid getter.
@@ -74,6 +73,7 @@ public class SKUItem {
 
     /**
      * get item subtotal.
+     *
      * @return itemsubtotal
      */
     public BigDecimal getItemSubTotal() {
@@ -82,6 +82,7 @@ public class SKUItem {
 
     /**
      * set item subtotal.
+     *
      * @param itemSubTotal - set itemsubtotal
      */
     public void setItemSubTotal(final BigDecimal itemSubTotal) {
@@ -90,6 +91,7 @@ public class SKUItem {
 
     /**
      * discounted boolean flag.
+     *
      * @return discounted state
      */
     public boolean isDiscounted() {
@@ -98,6 +100,7 @@ public class SKUItem {
 
     /**
      * set discounted flag.
+     *
      * @param discounted - accepts a boolean
      */
     public void setDiscounted(final boolean discounted) {

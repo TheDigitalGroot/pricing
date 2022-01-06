@@ -26,10 +26,11 @@ public class BuyXandYforAmt implements Discount {
 
     /**
      * Constructor.
+     *
      * @param skuQtyRelation - set a discount criteria
-     * @param rewardType -  set reward type
-     * @param rewardAmount - set reward amount
-     * @param rewardDesc - set reward desc
+     * @param rewardType     -  set reward type
+     * @param rewardAmount   - set reward amount
+     * @param rewardDesc     - set reward desc
      */
     public BuyXandYforAmt(final Map<String, Integer> skuQtyRelation, final RewardType rewardType, final BigDecimal rewardAmount, final String rewardDesc) {
         this.skuQtyRelation = skuQtyRelation;
@@ -40,6 +41,7 @@ public class BuyXandYforAmt implements Discount {
 
     /**
      * get list of discount criterias.
+     *
      * @return list
      */
     @Override
@@ -49,6 +51,7 @@ public class BuyXandYforAmt implements Discount {
 
     /**
      * get reward type.
+     *
      * @return reward type
      */
     @Override
@@ -58,6 +61,7 @@ public class BuyXandYforAmt implements Discount {
 
     /**
      * get reward desc.
+     *
      * @return reward desc
      */
     @Override
@@ -67,6 +71,7 @@ public class BuyXandYforAmt implements Discount {
 
     /**
      * get reward amt.
+     *
      * @return reward amt
      */
     @Override

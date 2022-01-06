@@ -39,6 +39,7 @@ public class ShoppingCart {
 
     /**
      * set sku items.
+     *
      * @param skuItemList - set a list of skus
      */
     public void setSkuItemList(final List<SKUItem> skuItemList) {

@@ -9,24 +9,28 @@ import java.util.Map;
 public interface Discount {
     /**
      * get sku to qty relation.
+     *
      * @return relation
      */
     Map<String, Integer> getSkuQtyRelation();
 
     /**
      * Get the reward type.
+     *
      * @return reward type
      */
     RewardType getRewardType();
 
     /**
      * Get reward desc.
+     *
      * @return desc
      */
     String getRewardDescription();
 
     /**
      * Get reward amt.
+     *
      * @return amt
      */
     BigDecimal getRewardAmount();
