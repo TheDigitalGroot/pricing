@@ -83,7 +83,7 @@ public class PromotionEngine {
                                 int nonDiscountedQty =
                                         comboItem.getQuantity() - comboItemWithMinQty.getQuantity();
                                 comboItem.setDiscounted(Boolean.TRUE);
-                                comboItem.setItemSubTotal((discount.getRewardAmount().divide(BigDecimal.valueOf(totalQtyInCombo)))
+                                comboItem.setItemSubTotal(discount.getRewardAmount().divide(BigDecimal.valueOf(totalQtyInCombo))
                                         .multiply(BigDecimal.valueOf(discountedTimes))
                                         .add(comboItem.getItemPrice().multiply(BigDecimal.valueOf(nonDiscountedQty))));
                                 log.info(String.valueOf(comboItem));
